@@ -1,0 +1,2541 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Queue Programs</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            background-color: #dfe6e9;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #0984e3;
+            border-left: 5px solid #0984e3;
+            padding-left: 10px;
+        }
+
+        pre, xmp {
+            background-color: #2d3436;
+            color: #dfe6e9;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            white-space: pre;
+        }
+
+        a {
+            display: block;
+            width: 150px;
+            text-align: center;
+            margin: 20px auto;
+            padding: 10px;
+            text-decoration: none;
+            background-color: #0984e3;
+            color: white;
+            border-radius: 6px;
+        }
+
+        a:hover {
+            background-color: #0652DD;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>QUEUE PROGRAMS</h1>
+
+<a href="index.html">Back to Home</a>
+
+<h2>Program 1: Simple Queue Using Integer Array</h2>
+
+<xmp>
+#include <stdio.h>
+
+#define SIZE 5
+
+int queue[SIZE];
+int front=-1;
+int rear=-1;
+
+int isEmpty()
+{
+    return front==-1;
+}
+
+int isFull()
+{
+    return rear==SIZE-1;
+}
+
+void insert(int value)
+{
+    if (isFull())
+    {
+        printf("Queue is full\n");
+    }
+    else
+    {
+        if (front==-1)
+        {
+            front=0;
+        }
+
+        queue[++rear]=value;
+        printf("Element inserted\n");
+    }
+}
+
+void delete()
+{
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+    }
+    else
+    {
+        printf("Deleted element = %d\n",queue[front]);
+
+        if (front==rear)
+        {
+            front=rear=-1;
+        }
+        else
+        {
+            front++;
+        }
+    }
+}
+
+void peek()
+{
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+    }
+    else
+    {
+        printf("Front element = %d\n",queue[front]);
+    }
+}
+
+int main()
+{
+    int choice,value;
+
+    while (1)
+    {
+        printf("\n1. Insert\n2. Delete\n3. Peek\n");
+        printf("4. IsEmpty\n5. IsFull\n6. Exit\n");
+
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+
+        switch (choice)
+        {
+            case 1:
+                printf("Enter value: ");
+                scanf("%d",&value);
+                insert(value);
+                break;
+
+            case 2:
+                delete();
+                break;
+
+            case 3:
+                peek();
+                break;
+
+            case 4:
+                printf(isEmpty() ? "Queue is empty\n" : "Queue is not empty\n");
+                break;
+
+            case 5:
+                printf(isFull() ? "Queue is full\n" : "Queue is not full\n");
+                break;
+
+            case 6:
+                return 0;
+
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+1
+10
+1
+20
+3
+2
+6
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+Element inserted
+Element inserted
+Front element = 10
+Deleted element = 10
+</pre>
+
+
+<h2>Program 2: Simple Queue Using String Array</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+#define SIZE 5
+
+char queue[SIZE][50];
+int front=-1;
+int rear=-1;
+
+int isEmpty()
+{
+    return front==-1;
+}
+
+int isFull()
+{
+    return rear==SIZE-1;
+}
+
+void insert(char value[])
+{
+    if (isFull())
+    {
+        printf("Queue is full\n");
+    }
+    else
+    {
+        if (front==-1)
+        {
+            front=0;
+        }
+
+        strcpy(queue[++rear],value);
+        printf("String inserted\n");
+    }
+}
+
+void delete()
+{
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+    }
+    else
+    {
+        printf("Deleted string = %s\n",queue[front]);
+
+        if (front==rear)
+        {
+            front=rear=-1;
+        }
+        else
+        {
+            front++;
+        }
+    }
+}
+
+void peek()
+{
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+    }
+    else
+    {
+        printf("Front string = %s\n",queue[front]);
+    }
+}
+
+int main()
+{
+    int choice;
+    char value[50];
+
+    while (1)
+    {
+        printf("\n1. Insert\n2. Delete\n3. Peek\n");
+        printf("4. IsEmpty\n5. IsFull\n6. Exit\n");
+
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+
+        switch (choice)
+        {
+            case 1:
+                printf("Enter string: ");
+                scanf("%49s",value);
+                insert(value);
+                break;
+
+            case 2:
+                delete();
+                break;
+
+            case 3:
+                peek();
+                break;
+
+            case 4:
+                printf(isEmpty() ? "Queue is empty\n" : "Queue is not empty\n");
+                break;
+
+            case 5:
+                printf(isFull() ? "Queue is full\n" : "Queue is not full\n");
+                break;
+
+            case 6:
+                return 0;
+
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+1
+Apple
+1
+Mango
+3
+2
+6
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+String inserted
+String inserted
+Front string = Apple
+Deleted string = Apple
+</pre>
+
+
+<h2>Program 3: Dynamic Queue of Integers Using Linked List</h2>
+
+<xmp>
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *next;
+};
+
+struct node *front=NULL;
+struct node *rear=NULL;
+
+int isEmpty()
+{
+    return front==NULL;
+}
+
+int isFull()
+{
+    return 0;
+}
+
+void insert(int value)
+{
+    struct node *newnode;
+
+    newnode=(struct node *)malloc(sizeof(struct node));
+
+    if (newnode==NULL)
+    {
+        printf("Memory full\n");
+        return;
+    }
+
+    newnode->data=value;
+    newnode->next=NULL;
+
+    if (rear==NULL)
+    {
+        front=rear=newnode;
+    }
+    else
+    {
+        rear->next=newnode;
+        rear=newnode;
+    }
+
+    printf("Element inserted\n");
+}
+
+void delete()
+{
+    struct node *temp;
+
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+        return;
+    }
+
+    temp=front;
+    printf("Deleted element = %d\n",temp->data);
+
+    front=front->next;
+
+    if (front==NULL)
+    {
+        rear=NULL;
+    }
+
+    free(temp);
+}
+
+void peek()
+{
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+    }
+    else
+    {
+        printf("Front element = %d\n",front->data);
+    }
+}
+
+int main()
+{
+    int choice,value;
+
+    while (1)
+    {
+        printf("\n1. Insert\n2. Delete\n3. Peek\n");
+        printf("4. IsEmpty\n5. IsFull\n6. Exit\n");
+
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+
+        switch (choice)
+        {
+            case 1:
+                printf("Enter value: ");
+                scanf("%d",&value);
+                insert(value);
+                break;
+
+            case 2:
+                delete();
+                break;
+
+            case 3:
+                peek();
+                break;
+
+            case 4:
+                printf(isEmpty() ? "Queue is empty\n" : "Queue is not empty\n");
+                break;
+
+            case 5:
+                printf(isFull() ? "Queue is full\n" : "Queue is not full\n");
+                break;
+
+            case 6:
+                while (!isEmpty())
+                {
+                    delete();
+                }
+                return 0;
+
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+1
+10
+1
+20
+3
+2
+6
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+Element inserted
+Element inserted
+Front element = 10
+Deleted element = 10
+</pre>
+
+
+<h2>Program 4: Dynamic Queue of Strings Using Linked List</h2>
+
+<xmp>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct node
+{
+    char data[50];
+    struct node *next;
+};
+
+struct node *front=NULL;
+struct node *rear=NULL;
+
+int isEmpty()
+{
+    return front==NULL;
+}
+
+int isFull()
+{
+    return 0;
+}
+
+void insert(char value[])
+{
+    struct node *newnode;
+
+    newnode=(struct node *)malloc(sizeof(struct node));
+
+    if (newnode==NULL)
+    {
+        printf("Memory full\n");
+        return;
+    }
+
+    strcpy(newnode->data,value);
+    newnode->next=NULL;
+
+    if (rear==NULL)
+    {
+        front=rear=newnode;
+    }
+    else
+    {
+        rear->next=newnode;
+        rear=newnode;
+    }
+
+    printf("String inserted\n");
+}
+
+void delete()
+{
+    struct node *temp;
+
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+        return;
+    }
+
+    temp=front;
+    printf("Deleted string = %s\n",temp->data);
+
+    front=front->next;
+
+    if (front==NULL)
+    {
+        rear=NULL;
+    }
+
+    free(temp);
+}
+
+void peek()
+{
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+    }
+    else
+    {
+        printf("Front string = %s\n",front->data);
+    }
+}
+
+int main()
+{
+    int choice;
+    char value[50];
+
+    while (1)
+    {
+        printf("\n1. Insert\n2. Delete\n3. Peek\n");
+        printf("4. IsEmpty\n5. IsFull\n6. Exit\n");
+
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+
+        switch (choice)
+        {
+            case 1:
+                printf("Enter string: ");
+                scanf("%49s",value);
+                insert(value);
+                break;
+
+            case 2:
+                delete();
+                break;
+
+            case 3:
+                peek();
+                break;
+
+            case 4:
+                printf(isEmpty() ? "Queue is empty\n" : "Queue is not empty\n");
+                break;
+
+            case 5:
+                printf(isFull() ? "Queue is full\n" : "Queue is not full\n");
+                break;
+
+            case 6:
+                while (!isEmpty())
+                {
+                    delete();
+                }
+                return 0;
+
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+1
+Apple
+1
+Mango
+3
+2
+6
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+String inserted
+String inserted
+Front string = Apple
+Deleted string = Apple
+</pre>
+
+
+<h2>Program 5: Circular Queue Using Integer Array</h2>
+
+<xmp>
+#include <stdio.h>
+
+#define SIZE 5
+
+int queue[SIZE];
+int front=-1;
+int rear=-1;
+
+int isEmpty()
+{
+    return front==-1;
+}
+
+int isFull()
+{
+    return (rear+1)%SIZE==front;
+}
+
+void insert(int value)
+{
+    if (isFull())
+    {
+        printf("Queue is full\n");
+        return;
+    }
+
+    if (isEmpty())
+    {
+        front=0;
+    }
+
+    rear=(rear+1)%SIZE;
+    queue[rear]=value;
+
+    printf("Element inserted\n");
+}
+
+void delete()
+{
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+        return;
+    }
+
+    printf("Deleted element = %d\n",queue[front]);
+
+    if (front==rear)
+    {
+        front=rear=-1;
+    }
+    else
+    {
+        front=(front+1)%SIZE;
+    }
+}
+
+void peek()
+{
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+    }
+    else
+    {
+        printf("Front element = %d\n",queue[front]);
+    }
+}
+
+int main()
+{
+    int choice,value;
+
+    while (1)
+    {
+        printf("\n1. Insert\n2. Delete\n3. Peek\n");
+        printf("4. IsEmpty\n5. IsFull\n6. Exit\n");
+
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+
+        switch (choice)
+        {
+            case 1:
+                printf("Enter value: ");
+                scanf("%d",&value);
+                insert(value);
+                break;
+
+            case 2:
+                delete();
+                break;
+
+            case 3:
+                peek();
+                break;
+
+            case 4:
+                printf(isEmpty() ? "Queue is empty\n" : "Queue is not empty\n");
+                break;
+
+            case 5:
+                printf(isFull() ? "Queue is full\n" : "Queue is not full\n");
+                break;
+
+            case 6:
+                return 0;
+
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+1
+10
+1
+20
+1
+30
+3
+2
+6
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+Element inserted
+Element inserted
+Element inserted
+Front element = 10
+Deleted element = 10
+</pre>
+
+
+<h2>Program 6: Circular Queue Using String Array</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+#define SIZE 5
+
+char queue[SIZE][50];
+int front=-1;
+int rear=-1;
+
+int isEmpty()
+{
+    return front==-1;
+}
+
+int isFull()
+{
+    return (rear+1)%SIZE==front;
+}
+
+void insert(char value[])
+{
+    if (isFull())
+    {
+        printf("Queue is full\n");
+        return;
+    }
+
+    if (isEmpty())
+    {
+        front=0;
+    }
+
+    rear=(rear+1)%SIZE;
+    strcpy(queue[rear],value);
+
+    printf("String inserted\n");
+}
+
+void delete()
+{
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+        return;
+    }
+
+    printf("Deleted string = %s\n",queue[front]);
+
+    if (front==rear)
+    {
+        front=rear=-1;
+    }
+    else
+    {
+        front=(front+1)%SIZE;
+    }
+}
+
+void peek()
+{
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+    }
+    else
+    {
+        printf("Front string = %s\n",queue[front]);
+    }
+}
+
+int main()
+{
+    int choice;
+    char value[50];
+
+    while (1)
+    {
+        printf("\n1. Insert\n2. Delete\n3. Peek\n");
+        printf("4. IsEmpty\n5. IsFull\n6. Exit\n");
+
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+
+        switch (choice)
+        {
+            case 1:
+                printf("Enter string: ");
+                scanf("%49s",value);
+                insert(value);
+                break;
+
+            case 2:
+                delete();
+                break;
+
+            case 3:
+                peek();
+                break;
+
+            case 4:
+                printf(isEmpty() ? "Queue is empty\n" : "Queue is not empty\n");
+                break;
+
+            case 5:
+                printf(isFull() ? "Queue is full\n" : "Queue is not full\n");
+                break;
+
+            case 6:
+                return 0;
+
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+1
+Apple
+1
+Mango
+3
+2
+6
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+String inserted
+String inserted
+Front string = Apple
+Deleted string = Apple
+</pre>
+
+
+<h2>Program 7: Priority Queue Using Integer Array</h2>
+
+<xmp>
+#include <stdio.h>
+
+#define SIZE 5
+
+int queue[SIZE];
+int priority[SIZE];
+int count=0;
+
+int isEmpty()
+{
+    return count==0;
+}
+
+int isFull()
+{
+    return count==SIZE;
+}
+
+void insert(int value,int p)
+{
+    int i;
+
+    if (isFull())
+    {
+        printf("Queue is full\n");
+        return;
+    }
+
+    i=count-1;
+
+    while (i>=0 && priority[i]>p)
+    {
+        queue[i+1]=queue[i];
+        priority[i+1]=priority[i];
+        i--;
+    }
+
+    queue[i+1]=value;
+    priority[i+1]=p;
+    count++;
+
+    printf("Element inserted\n");
+}
+
+void delete()
+{
+    int i;
+
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+        return;
+    }
+
+    printf("Deleted element = %d\n",queue[0]);
+
+    for (i=0;i<count-1;i++)
+    {
+        queue[i]=queue[i+1];
+        priority[i]=priority[i+1];
+    }
+
+    count--;
+}
+
+void peek()
+{
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+    }
+    else
+    {
+        printf("Highest priority element = %d\n",queue[0]);
+    }
+}
+
+int main()
+{
+    int choice,value,p;
+
+    while (1)
+    {
+        printf("\n1. Insert\n2. Delete\n3. Peek\n");
+        printf("4. IsEmpty\n5. IsFull\n6. Exit\n");
+
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+
+        switch (choice)
+        {
+            case 1:
+                printf("Enter value and priority: ");
+                scanf("%d %d",&value,&p);
+                insert(value,p);
+                break;
+
+            case 2:
+                delete();
+                break;
+
+            case 3:
+                peek();
+                break;
+
+            case 4:
+                printf(isEmpty() ? "Queue is empty\n" : "Queue is not empty\n");
+                break;
+
+            case 5:
+                printf(isFull() ? "Queue is full\n" : "Queue is not full\n");
+                break;
+
+            case 6:
+                return 0;
+
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+1
+100 2
+1
+200 1
+3
+2
+6
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+Element inserted
+Element inserted
+Highest priority element = 200
+Deleted element = 200
+</pre>
+
+<b>Note:</b> A smaller priority number represents a higher priority.
+
+
+<h2>Program 8: Priority Queue Using String Array</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+#define SIZE 5
+
+char queue[SIZE][50];
+int priority[SIZE];
+int count=0;
+
+int isEmpty()
+{
+    return count==0;
+}
+
+int isFull()
+{
+    return count==SIZE;
+}
+
+void insert(char value[],int p)
+{
+    int i;
+
+    if (isFull())
+    {
+        printf("Queue is full\n");
+        return;
+    }
+
+    i=count-1;
+
+    while (i>=0 && priority[i]>p)
+    {
+        strcpy(queue[i+1],queue[i]);
+        priority[i+1]=priority[i];
+        i--;
+    }
+
+    strcpy(queue[i+1],value);
+    priority[i+1]=p;
+    count++;
+
+    printf("String inserted\n");
+}
+
+void delete()
+{
+    int i;
+
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+        return;
+    }
+
+    printf("Deleted string = %s\n",queue[0]);
+
+    for (i=0;i<count-1;i++)
+    {
+        strcpy(queue[i],queue[i+1]);
+        priority[i]=priority[i+1];
+    }
+
+    count--;
+}
+
+void peek()
+{
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+    }
+    else
+    {
+        printf("Highest priority string = %s\n",queue[0]);
+    }
+}
+
+int main()
+{
+    int choice,p;
+    char value[50];
+
+    while (1)
+    {
+        printf("\n1. Insert\n2. Delete\n3. Peek\n");
+        printf("4. IsEmpty\n5. IsFull\n6. Exit\n");
+
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+
+        switch (choice)
+        {
+            case 1:
+                printf("Enter string and priority: ");
+                scanf("%49s %d",value,&p);
+                insert(value,p);
+                break;
+
+            case 2:
+                delete();
+                break;
+
+            case 3:
+                peek();
+                break;
+
+            case 4:
+                printf(isEmpty() ? "Queue is empty\n" : "Queue is not empty\n");
+                break;
+
+            case 5:
+                printf(isFull() ? "Queue is full\n" : "Queue is not full\n");
+                break;
+
+            case 6:
+                return 0;
+
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+1
+Apple 2
+1
+Mango 1
+3
+2
+6
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+String inserted
+String inserted
+Highest priority string = Mango
+Deleted string = Mango
+</pre>
+
+
+<h2>Program 9: Double Ended Queue Using Integer Array</h2>
+
+<xmp>
+#include <stdio.h>
+
+#define SIZE 5
+
+int deque[SIZE];
+int front=-1;
+int rear=-1;
+
+int isEmpty()
+{
+    return front==-1;
+}
+
+int isFull()
+{
+    return (rear+1)%SIZE==front;
+}
+
+void insertFront(int value)
+{
+    if (isFull())
+    {
+        printf("Deque is full\n");
+        return;
+    }
+
+    if (isEmpty())
+    {
+        front=rear=0;
+    }
+    else
+    {
+        front=(front-1+SIZE)%SIZE;
+    }
+
+    deque[front]=value;
+    printf("Inserted at front\n");
+}
+
+void insertRear(int value)
+{
+    if (isFull())
+    {
+        printf("Deque is full\n");
+        return;
+    }
+
+    if (isEmpty())
+    {
+        front=rear=0;
+    }
+    else
+    {
+        rear=(rear+1)%SIZE;
+    }
+
+    deque[rear]=value;
+    printf("Inserted at rear\n");
+}
+
+void deleteFront()
+{
+    if (isEmpty())
+    {
+        printf("Deque is empty\n");
+        return;
+    }
+
+    printf("Deleted element = %d\n",deque[front]);
+
+    if (front==rear)
+    {
+        front=rear=-1;
+    }
+    else
+    {
+        front=(front+1)%SIZE;
+    }
+}
+
+void deleteRear()
+{
+    if (isEmpty())
+    {
+        printf("Deque is empty\n");
+        return;
+    }
+
+    printf("Deleted element = %d\n",deque[rear]);
+
+    if (front==rear)
+    {
+        front=rear=-1;
+    }
+    else
+    {
+        rear=(rear-1+SIZE)%SIZE;
+    }
+}
+
+void peek()
+{
+    if (isEmpty())
+    {
+        printf("Deque is empty\n");
+    }
+    else
+    {
+        printf("Front element = %d\n",deque[front]);
+    }
+}
+
+int main()
+{
+    int choice,value;
+
+    while (1)
+    {
+        printf("\n1. Insert Front\n2. Insert Rear\n");
+        printf("3. Delete Front\n4. Delete Rear\n");
+        printf("5. Peek\n6. IsEmpty\n7. IsFull\n8. Exit\n");
+
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+
+        switch (choice)
+        {
+            case 1:
+                printf("Enter value: ");
+                scanf("%d",&value);
+                insertFront(value);
+                break;
+
+            case 2:
+                printf("Enter value: ");
+                scanf("%d",&value);
+                insertRear(value);
+                break;
+
+            case 3:
+                deleteFront();
+                break;
+
+            case 4:
+                deleteRear();
+                break;
+
+            case 5:
+                peek();
+                break;
+
+            case 6:
+                printf(isEmpty() ? "Deque is empty\n" : "Deque is not empty\n");
+                break;
+
+            case 7:
+                printf(isFull() ? "Deque is full\n" : "Deque is not full\n");
+                break;
+
+            case 8:
+                return 0;
+
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+2
+10
+2
+20
+1
+5
+5
+3
+8
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+Inserted at rear
+Inserted at rear
+Inserted at front
+Front element = 5
+Deleted element = 5
+</pre>
+
+
+<h2>Program 10: Double Ended Queue Using String Array</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+#define SIZE 5
+
+char deque[SIZE][50];
+int front=-1;
+int rear=-1;
+
+int isEmpty()
+{
+    return front==-1;
+}
+
+int isFull()
+{
+    return (rear+1)%SIZE==front;
+}
+
+void insertFront(char value[])
+{
+    if (isFull())
+    {
+        printf("Deque is full\n");
+        return;
+    }
+
+    if (isEmpty())
+    {
+        front=rear=0;
+    }
+    else
+    {
+        front=(front-1+SIZE)%SIZE;
+    }
+
+    strcpy(deque[front],value);
+    printf("Inserted at front\n");
+}
+
+void insertRear(char value[])
+{
+    if (isFull())
+    {
+        printf("Deque is full\n");
+        return;
+    }
+
+    if (isEmpty())
+    {
+        front=rear=0;
+    }
+    else
+    {
+        rear=(rear+1)%SIZE;
+    }
+
+    strcpy(deque[rear],value);
+    printf("Inserted at rear\n");
+}
+
+void deleteFront()
+{
+    if (isEmpty())
+    {
+        printf("Deque is empty\n");
+        return;
+    }
+
+    printf("Deleted string = %s\n",deque[front]);
+
+    if (front==rear)
+    {
+        front=rear=-1;
+    }
+    else
+    {
+        front=(front+1)%SIZE;
+    }
+}
+
+void deleteRear()
+{
+    if (isEmpty())
+    {
+        printf("Deque is empty\n");
+        return;
+    }
+
+    printf("Deleted string = %s\n",deque[rear]);
+
+    if (front==rear)
+    {
+        front=rear=-1;
+    }
+    else
+    {
+        rear=(rear-1+SIZE)%SIZE;
+    }
+}
+
+void peek()
+{
+    if (isEmpty())
+    {
+        printf("Deque is empty\n");
+    }
+    else
+    {
+        printf("Front string = %s\n",deque[front]);
+    }
+}
+
+int main()
+{
+    int choice;
+    char value[50];
+
+    while (1)
+    {
+        printf("\n1. Insert Front\n2. Insert Rear\n");
+        printf("3. Delete Front\n4. Delete Rear\n");
+        printf("5. Peek\n6. IsEmpty\n7. IsFull\n8. Exit\n");
+
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+
+        switch (choice)
+        {
+            case 1:
+                printf("Enter string: ");
+                scanf("%49s",value);
+                insertFront(value);
+                break;
+
+            case 2:
+                printf("Enter string: ");
+                scanf("%49s",value);
+                insertRear(value);
+                break;
+
+            case 3:
+                deleteFront();
+                break;
+
+            case 4:
+                deleteRear();
+                break;
+
+            case 5:
+                peek();
+                break;
+
+            case 6:
+                printf(isEmpty() ? "Deque is empty\n" : "Deque is not empty\n");
+                break;
+
+            case 7:
+                printf(isFull() ? "Deque is full\n" : "Deque is not full\n");
+                break;
+
+            case 8:
+                return 0;
+
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+2
+Apple
+2
+Mango
+1
+Banana
+5
+3
+8
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+Inserted at rear
+Inserted at rear
+Inserted at front
+Front string = Banana
+Deleted string = Banana
+</pre>
+
+
+<h2>Program 11: Dynamic Priority Queue of Integers Using Linked List</h2>
+
+<xmp>
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+    int data;
+    int priority;
+    struct node *next;
+};
+
+struct node *front=NULL;
+
+int isEmpty()
+{
+    return front==NULL;
+}
+
+int isFull()
+{
+    return 0;
+}
+
+void insert(int value,int p)
+{
+    struct node *newnode;
+    struct node *temp;
+
+    newnode=(struct node *)malloc(sizeof(struct node));
+
+    if (newnode==NULL)
+    {
+        printf("Memory full\n");
+        return;
+    }
+
+    newnode->data=value;
+    newnode->priority=p;
+    newnode->next=NULL;
+
+    if (front==NULL || p<front->priority)
+    {
+        newnode->next=front;
+        front=newnode;
+    }
+    else
+    {
+        temp=front;
+
+        while (temp->next!=NULL && temp->next->priority<=p)
+        {
+            temp=temp->next;
+        }
+
+        newnode->next=temp->next;
+        temp->next=newnode;
+    }
+
+    printf("Element inserted\n");
+}
+
+void delete()
+{
+    struct node *temp;
+
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+        return;
+    }
+
+    temp=front;
+
+    printf("Deleted element = %d\n",temp->data);
+
+    front=front->next;
+    free(temp);
+}
+
+void peek()
+{
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+    }
+    else
+    {
+        printf("Highest priority element = %d\n",front->data);
+    }
+}
+
+int main()
+{
+    int choice,value,p;
+
+    while (1)
+    {
+        printf("\n1. Insert\n2. Delete\n3. Peek\n");
+        printf("4. IsEmpty\n5. IsFull\n6. Exit\n");
+
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+
+        switch (choice)
+        {
+            case 1:
+                printf("Enter value and priority: ");
+                scanf("%d %d",&value,&p);
+                insert(value,p);
+                break;
+
+            case 2:
+                delete();
+                break;
+
+            case 3:
+                peek();
+                break;
+
+            case 4:
+                printf(isEmpty() ? "Queue is empty\n" : "Queue is not empty\n");
+                break;
+
+            case 5:
+                printf(isFull() ? "Queue is full\n" : "Queue is not full\n");
+                break;
+
+            case 6:
+                while (!isEmpty())
+                {
+                    delete();
+                }
+                return 0;
+
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+1
+100 2
+1
+200 1
+3
+2
+6
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+Element inserted
+Element inserted
+Highest priority element = 200
+Deleted element = 200
+</pre>
+
+
+<h2>Program 12: Dynamic Priority Queue of Strings Using Linked List</h2>
+
+<xmp>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct node
+{
+    char data[50];
+    int priority;
+    struct node *next;
+};
+
+struct node *front=NULL;
+
+int isEmpty()
+{
+    return front==NULL;
+}
+
+int isFull()
+{
+    return 0;
+}
+
+void insert(char value[],int p)
+{
+    struct node *newnode;
+    struct node *temp;
+
+    newnode=(struct node *)malloc(sizeof(struct node));
+
+    if (newnode==NULL)
+    {
+        printf("Memory full\n");
+        return;
+    }
+
+    strcpy(newnode->data,value);
+    newnode->priority=p;
+    newnode->next=NULL;
+
+    if (front==NULL || p<front->priority)
+    {
+        newnode->next=front;
+        front=newnode;
+    }
+    else
+    {
+        temp=front;
+
+        while (temp->next!=NULL && temp->next->priority<=p)
+        {
+            temp=temp->next;
+        }
+
+        newnode->next=temp->next;
+        temp->next=newnode;
+    }
+
+    printf("String inserted\n");
+}
+
+void delete()
+{
+    struct node *temp;
+
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+        return;
+    }
+
+    temp=front;
+
+    printf("Deleted string = %s\n",temp->data);
+
+    front=front->next;
+    free(temp);
+}
+
+void peek()
+{
+    if (isEmpty())
+    {
+        printf("Queue is empty\n");
+    }
+    else
+    {
+        printf("Highest priority string = %s\n",front->data);
+    }
+}
+
+int main()
+{
+    int choice,p;
+    char value[50];
+
+    while (1)
+    {
+        printf("\n1. Insert\n2. Delete\n3. Peek\n");
+        printf("4. IsEmpty\n5. IsFull\n6. Exit\n");
+
+        printf("Enter choice: ");
+        scanf("%d",&choice);
+
+        switch (choice)
+        {
+            case 1:
+                printf("Enter string and priority: ");
+                scanf("%49s %d",value,&p);
+                insert(value,p);
+                break;
+
+            case 2:
+                delete();
+                break;
+
+            case 3:
+                peek();
+                break;
+
+            case 4:
+                printf(isEmpty() ? "Queue is empty\n" : "Queue is not empty\n");
+                break;
+
+            case 5:
+                printf(isFull() ? "Queue is full\n" : "Queue is not full\n");
+                break;
+
+            case 6:
+                while (!isEmpty())
+                {
+                    delete();
+                }
+                return 0;
+
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+1
+Apple 2
+1
+Mango 1
+3
+2
+6
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+String inserted
+String inserted
+Highest priority string = Mango
+Deleted string = Mango
+</pre>
+
+
+<h2>Program 13: Find the First Circular Tour That Visits All Petrol Pumps</h2>
+
+<xmp>
+#include <stdio.h>
+
+int main()
+{
+    int petrol[100],distance[100];
+    int n,i;
+    int start=0;
+    int balance=0;
+    int total=0;
+
+    printf("Enter number of petrol pumps: ");
+    scanf("%d",&n);
+
+    printf("Enter petrol available at each pump:\n");
+
+    for (i=0;i<n;i++)
+    {
+        scanf("%d",&petrol[i]);
+    }
+
+    printf("Enter distance to next pump:\n");
+
+    for (i=0;i<n;i++)
+    {
+        scanf("%d",&distance[i]);
+    }
+
+    for (i=0;i<n;i++)
+    {
+        balance+=petrol[i]-distance[i];
+        total+=petrol[i]-distance[i];
+
+        if (balance<0)
+        {
+            start=i+1;
+            balance=0;
+        }
+    }
+
+    if (total>=0)
+    {
+        printf("First petrol pump index = %d",start);
+    }
+    else
+    {
+        printf("No possible circular tour");
+    }
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+Enter number of petrol pumps: 4
+Enter petrol available at each pump:
+4 6 7 4
+Enter distance to next pump:
+6 5 3 5
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+First petrol pump index = 1
+</pre>
+
+<text color="secondary" size="xs">The index starts from 0.</text>
+
+
+<h2>Program 14: Length of the Longest Valid Parentheses Substring</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+#define SIZE 100
+
+int main()
+{
+    char str[SIZE];
+    int stack[SIZE];
+    int top=-1;
+    int i;
+    int max=0;
+    int length;
+
+    printf("Enter parentheses string: ");
+    scanf("%99s",str);
+
+    stack[++top]=-1;
+
+    for (i=0;str[i]!='\0';i++)
+    {
+        if (str[i]=='(')
+        {
+            stack[++top]=i;
+        }
+        else
+        {
+            top--;
+
+            if (top==-1)
+            {
+                stack[++top]=i;
+            }
+            else
+            {
+                length=i-stack[top];
+
+                if (length>max)
+                {
+                    max=length;
+                }
+            }
+        }
+    }
+
+    printf("Longest valid substring length = %d",max);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+Enter parentheses string: )()())
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+Longest valid substring length = 4
+</pre>
+
+
+<h2>Program 15: Find the Next Greater Element</h2>
+
+<xmp>
+#include <stdio.h>
+
+int main()
+{
+    int a[100],result[100];
+    int n,i,j;
+    int found;
+
+    printf("Enter array size: ");
+    scanf("%d",&n);
+
+    printf("Enter array elements:\n");
+
+    for (i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+
+    for (i=0;i<n;i++)
+    {
+        found=0;
+
+        for (j=i+1;j<n;j++)
+        {
+            if (a[j]>a[i])
+            {
+                result[i]=a[j];
+                found=1;
+                break;
+            }
+        }
+
+        if (!found)
+        {
+            result[i]=-1;
+        }
+    }
+
+    printf("Next Greater Elements:\n");
+
+    for (i=0;i<n;i++)
+    {
+        printf("%d ",result[i]);
+    }
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+Enter array size: 5
+Enter array elements:
+4 5 2 10 8
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+Next Greater Elements:
+5 10 10 -1 -1
+</pre>
+
+
+<h2>Program 16: Find the Next Smaller Element</h2>
+
+<xmp>
+#include <stdio.h>
+
+int main()
+{
+    int a[100],result[100];
+    int n,i,j;
+    int found;
+
+    printf("Enter array size: ");
+    scanf("%d",&n);
+
+    printf("Enter array elements:\n");
+
+    for (i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+
+    for (i=0;i<n;i++)
+    {
+        found=0;
+
+        for (j=i+1;j<n;j++)
+        {
+            if (a[j]<a[i])
+            {
+                result[i]=a[j];
+                found=1;
+                break;
+            }
+        }
+
+        if (!found)
+        {
+            result[i]=-1;
+        }
+    }
+
+    printf("Next Smaller Elements:\n");
+
+    for (i=0;i<n;i++)
+    {
+        printf("%d ",result[i]);
+    }
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+Enter array size: 5
+Enter array elements:
+4 5 2 10 8
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+Next Smaller Elements:
+2 2 -1 8 -1
+</pre>
+
+
+<h2>Program 17: First Non-Repeating Character in a Stream Using Queue</h2>
+
+<xmp>
+#include <stdio.h>
+
+#define SIZE 100
+
+int main()
+{
+    char str[SIZE];
+    char queue[SIZE];
+    int count[256]={0};
+    int front=0;
+    int rear=-1;
+    int i;
+
+    printf("Enter a character stream: ");
+    scanf("%99s",str);
+
+    printf("First non-repeating characters:\n");
+
+    for (i=0;str[i]!='\0';i++)
+    {
+        count[(unsigned char)str[i]]++;
+
+        queue[++rear]=str[i];
+
+        while (front<=rear &&
+               count[(unsigned char)queue[front]]>1)
+        {
+            front++;
+        }
+
+        if (front>rear)
+        {
+            printf("-1 ");
+        }
+        else
+        {
+            printf("%c ",queue[front]);
+        }
+    }
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+Enter a character stream: aabc
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+First non-repeating characters:
+a -1 b b
+</pre>
+
+
+<h2>Program 18: Reverse First K Elements of Queue</h2>
+
+<xmp>
+#include <stdio.h>
+
+#define SIZE 100
+
+int main()
+{
+    int queue[SIZE];
+    int stack[SIZE];
+    int n,k;
+    int front=0;
+    int rear;
+    int top=-1;
+    int i,temp;
+
+    printf("Enter number of elements: ");
+    scanf("%d",&n);
+
+    printf("Enter queue elements:\n");
+
+    for (i=0;i<n;i++)
+    {
+        scanf("%d",&queue[i]);
+    }
+
+    printf("Enter value of K: ");
+    scanf("%d",&k);
+
+    if (k<0 || k>n)
+    {
+        printf("Invalid K value");
+        return 0;
+    }
+
+    rear=n-1;
+
+    for (i=0;i<k;i++)
+    {
+        stack[++top]=queue[front++];
+    }
+
+    while (top!=-1)
+    {
+        queue[++rear]=stack[top--];
+    }
+
+    for (i=0;i<n-k;i++)
+    {
+        temp=queue[front++];
+
+        queue[++rear]=temp;
+    }
+
+    printf("Modified queue:\n");
+
+    for (i=front;i<=rear;i++)
+    {
+        printf("%d ",queue[i]);
+    }
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+Enter number of elements: 5
+Enter queue elements:
+1 2 3 4 5
+Enter value of K: 3
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+Modified queue:
+3 2 1 4 5
+</pre>
+
+
+<h2>Program 19: Queue Reversal</h2>
+
+<xmp>
+#include <stdio.h>
+
+#define SIZE 100
+
+int main()
+{
+    int queue[SIZE];
+    int stack[SIZE];
+    int n,i;
+    int top=-1;
+
+    printf("Enter number of elements: ");
+    scanf("%d",&n);
+
+    printf("Enter queue elements:\n");
+
+    for (i=0;i<n;i++)
+    {
+        scanf("%d",&queue[i]);
+    }
+
+    for (i=0;i<n;i++)
+    {
+        stack[++top]=queue[i];
+    }
+
+    for (i=0;i<n;i++)
+    {
+        queue[i]=stack[top--];
+    }
+
+    printf("Reversed queue:\n");
+
+    for (i=0;i<n;i++)
+    {
+        printf("%d ",queue[i]);
+    }
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+Enter number of elements: 5
+Enter queue elements:
+10 20 30 40 50
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+Reversed queue:
+50 40 30 20 10
+</pre>
+
+
+<h2>Program 20: Rotten Oranges Using Queue</h2>
+
+<xmp>
+#include <stdio.h>
+
+#define SIZE 100
+
+struct cell
+{
+    int row;
+    int col;
+};
+
+int main()
+{
+    int a[SIZE][SIZE];
+    struct cell queue[SIZE*SIZE];
+
+    int r,c;
+    int front=0;
+    int rear=-1;
+    int fresh=0;
+    int minutes=0;
+
+    int i,j;
+    int row,col;
+    int dr[4]={-1,1,0,0};
+    int dc[4]={0,0,-1,1};
+    int k;
+
+    printf("Enter rows and columns: ");
+    scanf("%d %d",&r,&c);
+
+    printf("Enter matrix (0, 1, 2):\n");
+
+    for (i=0;i<r;i++)
+    {
+        for (j=0;j<c;j++)
+        {
+            scanf("%d",&a[i][j]);
+
+            if (a[i][j]==2)
+            {
+                queue[++rear].row=i;
+                queue[rear].col=j;
+            }
+            else if (a[i][j]==1)
+            {
+                fresh++;
+            }
+        }
+    }
+
+    while (front<=rear && fresh>0)
+    {
+        int levelEnd=rear;
+
+        while (front<=levelEnd)
+        {
+            row=queue[front].row;
+            col=queue[front].col;
+            front++;
+
+            for (k=0;k<4;k++)
+            {
+                int nr=row+dr[k];
+                int nc=col+dc[k];
+
+                if (nr>=0 && nr<r &&
+                    nc>=0 && nc<c &&
+                    a[nr][nc]==1)
+                {
+                    a[nr][nc]=2;
+                    fresh--;
+
+                    queue[++rear].row=nr;
+                    queue[rear].col=nc;
+                }
+            }
+        }
+
+        minutes++;
+    }
+
+    if (fresh==0)
+    {
+        printf("Minimum time = %d minutes",minutes);
+    }
+    else
+    {
+        printf("All oranges cannot rot");
+    }
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+Enter rows and columns: 3 3
+
+Enter matrix (0, 1, 2):
+2 1 1
+1 1 0
+0 1 1
+</pre>
+
+<b>OUTPUT:</b>
+<pre>
+Minimum time = 4 minutes
+</pre>
+
+
+<a href="index.html">Back to Home</a>
+
+</body>
+</html>

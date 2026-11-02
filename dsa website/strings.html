@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Strings Programs</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            background-color: #dfe6e9;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #0984e3;
+            border-left: 5px solid #0984e3;
+            padding-left: 10px;
+        }
+
+        pre, xmp {
+            background-color: #2d3436;
+            color: #dfe6e9;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            white-space: pre;
+        }
+
+        a {
+            display: block;
+            width: 150px;
+            text-align: center;
+            margin: 20px auto;
+            padding: 10px;
+            text-decoration: none;
+            background-color: #0984e3;
+            color: white;
+            border-radius: 6px;
+        }
+
+        a:hover {
+            background-color: #0652DD;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>STRINGS PROGRAMS</h1>
+
+<a href="index.html">Back to Home</a>
+
+<h2>Program 1 - Convert String to Uppercase</h2>
+
+<xmp>
+#include <stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    char s[100];
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    for(int i = 0; s[i] != '\0'; i++)
+    {
+        s[i] = toupper((unsigned char)s[i]);
+    }
+
+    printf("Uppercase: %s", s);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>hello world</pre>
+<b>OUTPUT:</b>
+<pre>HELLO WORLD</pre>
+
+<h2>Program 2 - Convert String to Lowercase</h2>
+
+<xmp>
+#include <stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    char s[100];
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    for(int i = 0; s[i] != '\0'; i++)
+    {
+        s[i] = tolower((unsigned char)s[i]);
+    }
+
+    printf("Lowercase: %s", s);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>HELLO WORLD</pre>
+<b>OUTPUT:</b>
+<pre>hello world</pre>
+
+<h2>Program 3 - Convert String to Sentence Case</h2>
+
+<xmp>
+#include <stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    char s[100];
+    int first = 1;
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    for(int i = 0; s[i] != '\0'; i++)
+    {
+        if(isalpha((unsigned char)s[i]))
+        {
+            if(first)
+            {
+                s[i] = toupper((unsigned char)s[i]);
+                first = 0;
+            }
+            else
+            {
+                s[i] = tolower((unsigned char)s[i]);
+            }
+        }
+    }
+
+    printf("Sentence case: %s", s);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>hELLO WORLD</pre>
+<b>OUTPUT:</b>
+<pre>Hello world</pre>
+
+<h2>Program 4 - Convert String to Title Case</h2>
+
+<xmp>
+#include <stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    char s[100];
+    int newWord = 1;
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    for(int i = 0; s[i] != '\0'; i++)
+    {
+        if(isspace((unsigned char)s[i]))
+        {
+            newWord = 1;
+        }
+        else if(newWord)
+        {
+            s[i] = toupper((unsigned char)s[i]);
+            newWord = 0;
+        }
+        else
+        {
+            s[i] = tolower((unsigned char)s[i]);
+        }
+    }
+
+    printf("Title case: %s", s);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>hello world programming</pre>
+<b>OUTPUT:</b>
+<pre>Hello World Programming</pre>
+
+<h2>Program 5 - Toggle Case of String</h2>
+
+<xmp>
+#include <stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    char s[100];
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    for(int i = 0; s[i] != '\0'; i++)
+    {
+        if(islower((unsigned char)s[i]))
+        {
+            s[i] = toupper((unsigned char)s[i]);
+        }
+        else if(isupper((unsigned char)s[i]))
+        {
+            s[i] = tolower((unsigned char)s[i]);
+        }
+    }
+
+    printf("Toggled string: %s", s);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>Hello World</pre>
+<b>OUTPUT:</b>
+<pre>hELLO wORLD</pre>
+
+<h2>Program 6 - Find Length of String</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[100];
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    s[strcspn(s, "\n")] = '\0';
+
+    printf("Length = %lu", (unsigned long)strlen(s));
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>Hello</pre>
+<b>OUTPUT:</b>
+<pre>Length = 5</pre>
+
+<h2>Program 7 - Compare Two Strings</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s1[100];
+    char s2[100];
+
+    printf("Enter first string: ");
+    fgets(s1, sizeof(s1), stdin);
+
+    printf("Enter second string: ");
+    fgets(s2, sizeof(s2), stdin);
+
+    s1[strcspn(s1, "\n")] = '\0';
+    s2[strcspn(s2, "\n")] = '\0';
+
+    if(strcmp(s1, s2) == 0)
+    {
+        printf("Strings are equal");
+    }
+    else
+    {
+        printf("Strings are not equal");
+    }
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+Hello
+Hello
+</pre>
+<b>OUTPUT:</b>
+<pre>Strings are equal</pre>
+
+<h2>Program 8 - Concatenate Two Strings</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s1[200];
+    char s2[100];
+
+    printf("Enter first string: ");
+    fgets(s1, sizeof(s1), stdin);
+
+    printf("Enter second string: ");
+    fgets(s2, sizeof(s2), stdin);
+
+    s1[strcspn(s1, "\n")] = '\0';
+    s2[strcspn(s2, "\n")] = '\0';
+
+    strcat(s1, s2);
+
+    printf("Concatenated string: %s", s1);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+Hello
+World
+</pre>
+<b>OUTPUT:</b>
+<pre>Concatenated string: HelloWorld</pre>
+
+<h2>Program 9 - Copy One String into Another</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s1[100];
+    char s2[100];
+
+    printf("Enter a string: ");
+    fgets(s1, sizeof(s1), stdin);
+
+    s1[strcspn(s1, "\n")] = '\0';
+
+    strcpy(s2, s1);
+
+    printf("Copied string: %s", s2);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>Hello World</pre>
+<b>OUTPUT:</b>
+<pre>Copied string: Hello World</pre>
+
+<h2>Program 10 - Print Character at Given Index</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[100];
+    int index;
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    s[strcspn(s, "\n")] = '\0';
+
+    printf("Enter index: ");
+    scanf("%d", &index);
+
+    if(index >= 0 && index < strlen(s))
+    {
+        printf("Character = %c", s[index]);
+    }
+    else
+    {
+        printf("Invalid index");
+    }
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+Hello
+1
+</pre>
+<b>OUTPUT:</b>
+<pre>Character = e</pre>
+
+<h2>Program 11 - Check Palindrome String</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[100];
+    int i;
+    int length;
+    int palindrome = 1;
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    s[strcspn(s, "\n")] = '\0';
+
+    length = strlen(s);
+
+    for(i = 0; i < length / 2; i++)
+    {
+        if(s[i] != s[length - i - 1])
+        {
+            palindrome = 0;
+            break;
+        }
+    }
+
+    if(palindrome)
+    {
+        printf("Palindrome string");
+    }
+    else
+    {
+        printf("Not a palindrome string");
+    }
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>madam</pre>
+<b>OUTPUT:</b>
+<pre>Palindrome string</pre>
+
+<h2>Program 12 - Print Each Character on a New Line</h2>
+
+<xmp>
+#include <stdio.h>
+
+int main()
+{
+    char s[100];
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    for(int i = 0; s[i] != '\0'; i++)
+    {
+        if(s[i] != '\n')
+        {
+            printf("%c\n", s[i]);
+        }
+    }
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>Hello</pre>
+<b>OUTPUT:</b>
+<pre>
+H
+e
+l
+l
+o
+</pre>
+
+<h2>Program 13 - Reverse Copy of a String</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[100];
+    char rev[100];
+    int length;
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    s[strcspn(s, "\n")] = '\0';
+
+    length = strlen(s);
+
+    for(int i = 0; i < length; i++)
+    {
+        rev[i] = s[length - i - 1];
+    }
+
+    rev[length] = '\0';
+
+    printf("Reversed string: %s", rev);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>Hello</pre>
+<b>OUTPUT:</b>
+<pre>Reversed string: olleH</pre>
+
+<h2>Program 14 - Difference of ASCII Values of Adjacent Characters</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[100];
+    int length;
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    s[strcspn(s, "\n")] = '\0';
+
+    length = strlen(s);
+
+    for(int i = 0; i < length - 1; i++)
+    {
+        printf("%d ", (int)s[i] - (int)s[i + 1]);
+    }
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>ABC</pre>
+<b>OUTPUT:</b>
+<pre>-1 -1</pre>
+
+<h2>Program 15 - Search a Character in a String</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[100];
+    char ch;
+    int found = 0;
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    printf("Enter character to search: ");
+    scanf(" %c", &ch);
+
+    for(int i = 0; s[i] != '\0'; i++)
+    {
+        if(s[i] == ch)
+        {
+            found = 1;
+            break;
+        }
+    }
+
+    if(found)
+    {
+        printf("Character found");
+    }
+    else
+    {
+        printf("Character not found");
+    }
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+Hello
+l
+</pre>
+<b>OUTPUT:</b>
+<pre>Character found</pre>
+
+<h2>Program 16 - Find Index of Character or Return -1</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[100];
+    char ch;
+    int index = -1;
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    s[strcspn(s, "\n")] = '\0';
+
+    printf("Enter character: ");
+    scanf(" %c", &ch);
+
+    for(int i = 0; s[i] != '\0'; i++)
+    {
+        if(s[i] == ch)
+        {
+            index = i;
+            break;
+        }
+    }
+
+    printf("Index = %d", index);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+Hello
+l
+</pre>
+<b>OUTPUT:</b>
+<pre>Index = 2</pre>
+
+<h2>Program 17 - Count Vowels in a String</h2>
+
+<xmp>
+#include <stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    char s[100];
+    int count = 0;
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    for(int i = 0; s[i] != '\0'; i++)
+    {
+        char ch = tolower((unsigned char)s[i]);
+
+        if(ch == 'a' || ch == 'e' || ch == 'i' ||
+           ch == 'o' || ch == 'u')
+        {
+            count++;
+        }
+    }
+
+    printf("Number of vowels = %d", count);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>Hello World</pre>
+<b>OUTPUT:</b>
+<pre>Number of vowels = 3</pre>
+
+<h2>Program 18 - Convert String to Integer</h2>
+
+<xmp>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    char s[100];
+    int num;
+
+    printf("Enter an integer as string: ");
+    scanf("%99s", s);
+
+    num = atoi(s);
+
+    printf("Integer = %d", num);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>12345</pre>
+<b>OUTPUT:</b>
+<pre>Integer = 12345</pre>
+
+<h2>Program 19 - Convert String to Float</h2>
+
+<xmp>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    char s[100];
+    float num;
+
+    printf("Enter a number as string: ");
+    scanf("%99s", s);
+
+    num = atof(s);
+
+    printf("Float = %.2f", num);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>12.56</pre>
+<b>OUTPUT:</b>
+<pre>Float = 12.56</pre>
+
+<h2>Program 20 - Count Characters, Words, Spaces and Lines</h2>
+
+<xmp>
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+int main()
+{
+    char s[500];
+    int characters = 0;
+    int words = 0;
+    int spaces = 0;
+    int lines = 1;
+    int inWord = 0;
+
+    printf("Enter a line: ");
+    fgets(s, sizeof(s), stdin);
+
+    for(int i = 0; s[i] != '\0'; i++)
+    {
+        if(s[i] == '\n')
+        {
+            continue;
+        }
+
+        characters++;
+
+        if(s[i] == ' ')
+        {
+            spaces++;
+        }
+
+        if(isspace((unsigned char)s[i]))
+        {
+            inWord = 0;
+        }
+        else if(!inWord)
+        {
+            words++;
+            inWord = 1;
+        }
+    }
+
+    printf("Characters = %d\n", characters);
+    printf("Words = %d\n", words);
+    printf("Spaces = %d\n", spaces);
+    printf("Lines = %d", lines);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>Hello World</pre>
+<b>OUTPUT:</b>
+<pre>
+Characters = 11
+Words = 2
+Spaces = 1
+Lines = 1
+</pre>
+
+<h2>Program 21 - Print All Permutations of ABCDE</h2>
+
+<xmp>
+#include <stdio.h>
+
+void swap(char *a, char *b)
+{
+    char temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void permute(char s[], int start, int end)
+{
+    if(start == end)
+    {
+        printf("%s\n", s);
+        return;
+    }
+
+    for(int i = start; i <= end; i++)
+    {
+        swap(&s[start], &s[i]);
+
+        permute(s, start + 1, end);
+
+        swap(&s[start], &s[i]);
+    }
+}
+
+int main()
+{
+    char s[] = "ABCDE";
+
+    permute(s, 0, 4);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>No input required</pre>
+<b>OUTPUT:</b>
+<pre>
+ABCDE
+ABCED
+ABDCE
+ABDEC
+ABECD
+ABEDC
+... (Total 120 permutations)
+</pre>
+
+<h2>Program 22 - Sort String in Ascending Order</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[100];
+    char temp;
+    int length;
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    s[strcspn(s, "\n")] = '\0';
+
+    length = strlen(s);
+
+    for(int i = 0; i < length - 1; i++)
+    {
+        for(int j = 0; j < length - i - 1; j++)
+        {
+            if(s[j] > s[j + 1])
+            {
+                temp = s[j];
+                s[j] = s[j + 1];
+                s[j + 1] = temp;
+            }
+        }
+    }
+
+    printf("Sorted string: %s", s);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>dcba</pre>
+<b>OUTPUT:</b>
+<pre>Sorted string: abcd</pre>
+
+<h2>Program 23 - Count Occurrence of a Word in a Sentence</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[300];
+    char word[50];
+    char *token;
+    int count = 0;
+
+    printf("Enter a sentence: ");
+    fgets(s, sizeof(s), stdin);
+
+    printf("Enter word to search: ");
+    scanf("%49s", word);
+
+    token = strtok(s, " \n");
+
+    while(token != NULL)
+    {
+        if(strcmp(token, word) == 0)
+        {
+            count++;
+        }
+
+        token = strtok(NULL, " \n");
+    }
+
+    printf("Occurrence = %d", count);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+cat dog cat bird cat
+cat
+</pre>
+<b>OUTPUT:</b>
+<pre>Occurrence = 3</pre>
+
+<h2>Program 24 - Replace a Word in a Sentence</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[300];
+    char word[50];
+    char replacement[50];
+    char result[500] = "";
+    char *token;
+
+    printf("Enter a sentence: ");
+    fgets(s, sizeof(s), stdin);
+
+    printf("Enter word to replace: ");
+    scanf("%49s", word);
+
+    printf("Enter replacement word: ");
+    scanf("%49s", replacement);
+
+    token = strtok(s, " \n");
+
+    while(token != NULL)
+    {
+        if(strcmp(token, word) == 0)
+        {
+            strcat(result, replacement);
+        }
+        else
+        {
+            strcat(result, token);
+        }
+
+        strcat(result, " ");
+
+        token = strtok(NULL, " \n");
+    }
+
+    printf("New sentence: %s", result);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+I like cats
+cats
+dogs
+</pre>
+<b>OUTPUT:</b>
+<pre>New sentence: I like dogs</pre>
+
+<h2>Program 25 - Remove Leading and Trailing Spaces</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main()
+{
+    char s[200];
+    int start = 0;
+    int end;
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    end = strlen(s) - 1;
+
+    while(s[start] != '\0' &&
+          isspace((unsigned char)s[start]))
+    {
+        start++;
+    }
+
+    while(end >= start &&
+          isspace((unsigned char)s[end]))
+    {
+        end--;
+    }
+
+    s[end + 1] = '\0';
+
+    printf("Trimmed string: %s", s + start);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>   Hello World   </pre>
+<b>OUTPUT:</b>
+<pre>Trimmed string: Hello World</pre>
+
+<h2>Program 26 - Split First and Second Word</h2>
+
+<xmp>
+#include <stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    char s[200];
+    int i = 0;
+    int start;
+
+    printf("Enter a sentence: ");
+    fgets(s, sizeof(s), stdin);
+
+    while(s[i] != '\0' && isspace((unsigned char)s[i]))
+    {
+        i++;
+    }
+
+    printf("First word: ");
+
+    while(s[i] != '\0' && !isspace((unsigned char)s[i]))
+    {
+        printf("%c", s[i]);
+        i++;
+    }
+
+    while(s[i] != '\0' && isspace((unsigned char)s[i]))
+    {
+        i++;
+    }
+
+    start = i;
+
+    printf("\nSecond word: ");
+
+    while(s[i] != '\0' && !isspace((unsigned char)s[i]))
+    {
+        printf("%c", s[i]);
+        i++;
+    }
+
+    printf("\nStart index of second word: %d", start);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>Hello World</pre>
+<b>OUTPUT:</b>
+<pre>
+First word: Hello
+Second word: World
+Start index of second word: 6
+</pre>
+
+<h2>Program 27 - Align Text Left, Center and Right</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[100];
+    int width = 40;
+    int length;
+    int spaces;
+
+    printf("Enter a string: ");
+    fgets(s, sizeof(s), stdin);
+
+    s[strcspn(s, "\n")] = '\0';
+
+    length = strlen(s);
+
+    printf("\nLeft Alignment:\n");
+    printf("%-*s\n", width, s);
+
+    spaces = (width - length) / 2;
+
+    printf("\nCenter Alignment:\n");
+    printf("%*s%s\n", spaces, "", s);
+
+    printf("\nRight Alignment:\n");
+    printf("%*s\n", width, s);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>Hello</pre>
+<b>OUTPUT:</b>
+<pre>
+Left Alignment:
+Hello
+
+Center Alignment:
+                 Hello
+
+Right Alignment:
+                                   Hello
+</pre>
+
+<h2>Program 28 - Dictionary of 10 Words with Create, Delete and Search</h2>
+
+<xmp>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char words[10][50];
+    char meanings[10][100];
+    char search[50];
+    int count = 0;
+    int choice;
+    int found;
+
+    do
+    {
+        printf("\n1. Create\n");
+        printf("2. Search\n");
+        printf("3. Delete\n");
+        printf("4. Display\n");
+        printf("5. Exit\n");
+
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+
+        if(choice == 1)
+        {
+            if(count < 10)
+            {
+                printf("Enter word: ");
+                scanf("%49s", words[count]);
+
+                printf("Enter meaning: ");
+                scanf(" %99[^\n]", meanings[count]);
+
+                count++;
+            }
+            else
+            {
+                printf("Dictionary is full\n");
+            }
+        }
+        else if(choice == 2)
+        {
+            printf("Enter word to search: ");
+            scanf("%49s", search);
+
+            found = 0;
+
+            for(int i = 0; i < count; i++)
+            {
+                if(strcmp(words[i], search) == 0)
+                {
+                    printf("Meaning: %s\n", meanings[i]);
+                    found = 1;
+                    break;
+                }
+            }
+
+            if(!found)
+            {
+                printf("Word not found\n");
+            }
+        }
+        else if(choice == 3)
+        {
+            printf("Enter word to delete: ");
+            scanf("%49s", search);
+
+            found = 0;
+
+            for(int i = 0; i < count; i++)
+            {
+                if(strcmp(words[i], search) == 0)
+                {
+                    for(int j = i; j < count - 1; j++)
+                    {
+                        strcpy(words[j], words[j + 1]);
+                        strcpy(meanings[j], meanings[j + 1]);
+                    }
+
+                    count--;
+                    found = 1;
+                    printf("Word deleted\n");
+                    break;
+                }
+            }
+
+            if(!found)
+            {
+                printf("Word not found\n");
+            }
+        }
+        else if(choice == 4)
+        {
+            for(int i = 0; i < count; i++)
+            {
+                printf("%s : %s\n", words[i], meanings[i]);
+            }
+        }
+
+    } while(choice != 5);
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>
+1
+Apple
+A fruit
+2
+Apple
+5
+</pre>
+<b>OUTPUT:</b>
+<pre>
+Meaning: A fruit
+</pre>
+
+<h2>Program 29 - Convert 10 Characters into ASCII Integer Array</h2>
+
+<xmp>
+#include <stdio.h>
+
+int main()
+{
+    char s[11];
+    int ascii[10];
+
+    printf("Enter 10 characters: ");
+    fgets(s, sizeof(s), stdin);
+
+    for(int i = 0; i < 10; i++)
+    {
+        ascii[i] = (int)s[i];
+    }
+
+    printf("ASCII values:\n");
+
+    for(int i = 0; i < 10; i++)
+    {
+        printf("%d ", ascii[i]);
+    }
+
+    return 0;
+}
+</xmp>
+
+<b>INPUT:</b>
+<pre>ABCDEFGHIJ</pre>
+<b>OUTPUT:</b>
+<pre>65 66 67 68 69 70 71 72 73 74</pre>
+
+<a href="index.html">Back to Home</a>
+
+</body>
+</html>

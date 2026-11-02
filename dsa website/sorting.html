@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sorting Algorithms Programs</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 20px;
+            line-height: 1.4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            background-color: #dfe6e9;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #0984e3;
+            border-left: 5px solid #0984e3;
+            padding-left: 10px;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        pre, xmp {
+            background-color: #2d3436;
+            color: #dfe6e9;
+            padding: 12px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        b {
+            display: block;
+            margin-top: 8px;
+            margin-bottom: 3px;
+        }
+
+        a {
+            display: block;
+            width: 150px;
+            text-align: center;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #0984e3;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        a:hover {
+            background-color: #0652DD;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>SORTING ALGORITHMS PROGRAMS</h1>
+<a href="index.html">Back to Home</a>
+
+<h2>Program 1: Selection Sort Through Iteration on Integer Array</h2>
+
+<xmp>#include <stdio.h>
+
+int main()
+{
+    int a[100], n, i, j, min, temp;
+
+    printf("Enter array size: ");
+    scanf("%d", &n);
+
+    printf("Enter array elements:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+
+    for (i = 0; i < n - 1; i++)
+    {
+        min = i;
+
+        for (j = i + 1; j < n; j++)
+        {
+            if (a[j] < a[min])
+            {
+                min = j;
+            }
+        }
+
+        temp = a[i];
+        a[i] = a[min];
+        a[min] = temp;
+    }
+
+    printf("Sorted array:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+64 25 12 22 11</pre>
+
+<b>Output:</b>
+<pre>Sorted array:
+11 12 22 25 64</pre>
+
+<h2>Program 2: Selection Sort Through Recursion on Integer Array</h2>
+
+<xmp>#include <stdio.h>
+
+void selectionSort(int a[], int n, int index)
+{
+    int i, min, temp;
+
+    if (index == n - 1)
+    {
+        return;
+    }
+
+    min = index;
+
+    for (i = index + 1; i < n; i++)
+    {
+        if (a[i] < a[min])
+        {
+            min = i;
+        }
+    }
+
+    temp = a[index];
+    a[index] = a[min];
+    a[min] = temp;
+
+    selectionSort(a, n, index + 1);
+}
+
+int main()
+{
+    int a[100], n, i;
+
+    printf("Enter array size: ");
+    scanf("%d", &n);
+
+    printf("Enter array elements:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+
+    selectionSort(a, n, 0);
+
+    printf("Sorted array:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+64 25 12 22 11</pre>
+
+<b>Output:</b>
+<pre>Sorted array:
+11 12 22 25 64</pre>
+
+<h2>Program 3: Bubble Sort Through Iteration on Integer Array</h2>
+
+<xmp>#include <stdio.h>
+
+int main()
+{
+    int a[100], n, i, j, temp;
+
+    printf("Enter array size: ");
+    scanf("%d", &n);
+
+    printf("Enter array elements:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+
+    for (i = 0; i < n - 1; i++)
+    {
+        for (j = 0; j < n - i - 1; j++)
+        {
+            if (a[j] > a[j + 1])
+            {
+                temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
+            }
+        }
+    }
+
+    printf("Sorted array:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+5 1 4 2 8</pre>
+
+<b>Output:</b>
+<pre>Sorted array:
+1 2 4 5 8</pre>
+
+<h2>Program 4: Bubble Sort Through Recursion on Integer Array</h2>
+
+<xmp>#include <stdio.h>
+
+void bubbleSort(int a[], int n)
+{
+    int i, temp;
+
+    if (n == 1)
+    {
+        return;
+    }
+
+    for (i = 0; i < n - 1; i++)
+    {
+        if (a[i] > a[i + 1])
+        {
+            temp = a[i];
+            a[i] = a[i + 1];
+            a[i + 1] = temp;
+        }
+    }
+
+    bubbleSort(a, n - 1);
+}
+
+int main()
+{
+    int a[100], n, i;
+
+    printf("Enter array size: ");
+    scanf("%d", &n);
+
+    printf("Enter array elements:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+
+    bubbleSort(a, n);
+
+    printf("Sorted array:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+5 1 4 2 8</pre>
+
+<b>Output:</b>
+<pre>Sorted array:
+1 2 4 5 8</pre>
+
+<h2>Program 5: Insertion Sort Through Iteration on Integer Array</h2>
+
+<xmp>#include <stdio.h>
+
+int main()
+{
+    int a[100], n, i, j, key;
+
+    printf("Enter array size: ");
+    scanf("%d", &n);
+
+    printf("Enter array elements:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+
+    for (i = 1; i < n; i++)
+    {
+        key = a[i];
+        j = i - 1;
+
+        while (j >= 0 && a[j] > key)
+        {
+            a[j + 1] = a[j];
+            j--;
+        }
+
+        a[j + 1] = key;
+    }
+
+    printf("Sorted array:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+12 11 13 5 6</pre>
+
+<b>Output:</b>
+<pre>Sorted array:
+5 6 11 12 13</pre>
+
+<h2>Program 6: Insertion Sort Through Recursion on Integer Array</h2>
+
+<xmp>#include <stdio.h>
+
+void insertionSort(int a[], int n)
+{
+    int key, j;
+
+    if (n <= 1)
+    {
+        return;
+    }
+
+    insertionSort(a, n - 1);
+
+    key = a[n - 1];
+    j = n - 2;
+
+    while (j >= 0 && a[j] > key)
+    {
+        a[j + 1] = a[j];
+        j--;
+    }
+
+    a[j + 1] = key;
+}
+
+int main()
+{
+    int a[100], n, i;
+
+    printf("Enter array size: ");
+    scanf("%d", &n);
+
+    printf("Enter array elements:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+
+    insertionSort(a, n);
+
+    printf("Sorted array:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+12 11 13 5 6</pre>
+
+<b>Output:</b>
+<pre>Sorted array:
+5 6 11 12 13</pre>
+
+<h2>Program 7: Merge Sort Through Iteration on Integer Array</h2>
+
+<xmp>#include <stdio.h>
+
+int main()
+{
+    int a[100], temp[100];
+    int n, i, width, left, mid, right;
+    int x, y, k, start;
+
+    printf("Enter array size: ");
+    scanf("%d", &n);
+
+    printf("Enter array elements:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+
+    for (width = 1; width < n; width *= 2)
+    {
+        for (left = 0; left < n; left += 2 * width)
+        {
+            mid = left + width;
+            right = left + 2 * width;
+
+            if (mid > n)
+            {
+                mid = n;
+            }
+
+            if (right > n)
+            {
+                right = n;
+            }
+
+            x = left;
+            y = mid;
+            k = left;
+
+            while (x < mid && y < right)
+            {
+                if (a[x] <= a[y])
+                {
+                    temp[k++] = a[x++];
+                }
+                else
+                {
+                    temp[k++] = a[y++];
+                }
+            }
+
+            while (x < mid)
+            {
+                temp[k++] = a[x++];
+            }
+
+            while (y < right)
+            {
+                temp[k++] = a[y++];
+            }
+
+            for (start = left; start < right; start++)
+            {
+                a[start] = temp[start];
+            }
+        }
+    }
+
+    printf("Sorted array:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+38 27 43 3 9</pre>
+
+<b>Output:</b>
+<pre>Sorted array:
+3 9 27 38 43</pre>
+
+<h2>Program 8: Merge Sort Through Recursion on Integer Array</h2>
+
+<xmp>#include <stdio.h>
+
+void merge(int a[], int low, int mid, int high)
+{
+    int temp[100];
+    int i = low, j = mid + 1, k = low;
+
+    while (i <= mid && j <= high)
+    {
+        if (a[i] <= a[j])
+        {
+            temp[k++] = a[i++];
+        }
+        else
+        {
+            temp[k++] = a[j++];
+        }
+    }
+
+    while (i <= mid)
+    {
+        temp[k++] = a[i++];
+    }
+
+    while (j <= high)
+    {
+        temp[k++] = a[j++];
+    }
+
+    for (i = low; i <= high; i++)
+    {
+        a[i] = temp[i];
+    }
+}
+
+void mergeSort(int a[], int low, int high)
+{
+    int mid;
+
+    if (low < high)
+    {
+        mid = (low + high) / 2;
+
+        mergeSort(a, low, mid);
+        mergeSort(a, mid + 1, high);
+
+        merge(a, low, mid, high);
+    }
+}
+
+int main()
+{
+    int a[100], n, i;
+
+    printf("Enter array size: ");
+    scanf("%d", &n);
+
+    printf("Enter array elements:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+
+    mergeSort(a, 0, n - 1);
+
+    printf("Sorted array:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+38 27 43 3 9</pre>
+
+<b>Output:</b>
+<pre>Sorted array:
+3 9 27 38 43</pre>
+
+<h2>Program 9: Quick Sort Through Iteration on Integer Array</h2>
+
+<xmp>#include <stdio.h>
+
+void quickSort(int a[], int n)
+{
+    int low[100], high[100];
+    int top = -1;
+    int l, h, i, j, pivot, temp;
+
+    low[++top] = 0;
+    high[top] = n - 1;
+
+    while (top >= 0)
+    {
+        l = low[top];
+        h = high[top--];
+
+        pivot = a[h];
+        i = l - 1;
+
+        for (j = l; j < h; j++)
+        {
+            if (a[j] < pivot)
+            {
+                i++;
+
+                temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+
+        temp = a[i + 1];
+        a[i + 1] = a[h];
+        a[h] = temp;
+
+        j = i + 1;
+
+        if (j - 1 > l)
+        {
+            low[++top] = l;
+            high[top] = j - 1;
+        }
+
+        if (j + 1 < h)
+        {
+            low[++top] = j + 1;
+            high[top] = h;
+        }
+    }
+}
+
+int main()
+{
+    int a[100], n, i;
+
+    printf("Enter array size: ");
+    scanf("%d", &n);
+
+    printf("Enter array elements:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+
+    quickSort(a, n);
+
+    printf("Sorted array:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+10 7 8 9 1</pre>
+
+<b>Output:</b>
+<pre>Sorted array:
+1 7 8 9 10</pre>
+
+<h2>Program 10: Quick Sort Through Recursion on Integer Array</h2>
+
+<xmp>#include <stdio.h>
+
+int partition(int a[], int low, int high)
+{
+    int pivot = a[high];
+    int i = low - 1;
+    int j, temp;
+
+    for (j = low; j < high; j++)
+    {
+        if (a[j] < pivot)
+        {
+            i++;
+
+            temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
+        }
+    }
+
+    temp = a[i + 1];
+    a[i + 1] = a[high];
+    a[high] = temp;
+
+    return i + 1;
+}
+
+void quickSort(int a[], int low, int high)
+{
+    int pi;
+
+    if (low < high)
+    {
+        pi = partition(a, low, high);
+
+        quickSort(a, low, pi - 1);
+        quickSort(a, pi + 1, high);
+    }
+}
+
+int main()
+{
+    int a[100], n, i;
+
+    printf("Enter array size: ");
+    scanf("%d", &n);
+
+    printf("Enter array elements:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+
+    quickSort(a, 0, n - 1);
+
+    printf("Sorted array:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+10 7 8 9 1</pre>
+
+<b>Output:</b>
+<pre>Sorted array:
+1 7 8 9 10</pre>
+
+<h2>Program 11: Selection Sort Through Iteration on String Array</h2>
+
+<xmp>#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char a[50][50], temp[50];
+    int n, i, j, min;
+
+    printf("Enter number of strings: ");
+    scanf("%d", &n);
+
+    printf("Enter strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%49s", a[i]);
+    }
+
+    for (i = 0; i < n - 1; i++)
+    {
+        min = i;
+
+        for (j = i + 1; j < n; j++)
+        {
+            if (strcmp(a[j], a[min]) < 0)
+            {
+                min = j;
+            }
+        }
+
+        strcpy(temp, a[i]);
+        strcpy(a[i], a[min]);
+        strcpy(a[min], temp);
+    }
+
+    printf("Sorted strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%s ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+banana apple mango orange grapes</pre>
+
+<b>Output:</b>
+<pre>Sorted strings:
+apple banana grapes mango orange</pre>
+
+<h2>Program 12: Selection Sort Through Recursion on String Array</h2>
+
+<xmp>#include <stdio.h>
+#include <string.h>
+
+void selectionSort(char a[][50], int n, int index)
+{
+    int i, min;
+    char temp[50];
+
+    if (index == n - 1)
+    {
+        return;
+    }
+
+    min = index;
+
+    for (i = index + 1; i < n; i++)
+    {
+        if (strcmp(a[i], a[min]) < 0)
+        {
+            min = i;
+        }
+    }
+
+    strcpy(temp, a[index]);
+    strcpy(a[index], a[min]);
+    strcpy(a[min], temp);
+
+    selectionSort(a, n, index + 1);
+}
+
+int main()
+{
+    char a[50][50];
+    int n, i;
+
+    printf("Enter number of strings: ");
+    scanf("%d", &n);
+
+    printf("Enter strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%49s", a[i]);
+    }
+
+    selectionSort(a, n, 0);
+
+    printf("Sorted strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%s ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+banana apple mango orange grapes</pre>
+
+<b>Output:</b>
+<pre>Sorted strings:
+apple banana grapes mango orange</pre>
+
+<h2>Program 13: Bubble Sort Through Iteration on String Array</h2>
+
+<xmp>#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char a[50][50], temp[50];
+    int n, i, j;
+
+    printf("Enter number of strings: ");
+    scanf("%d", &n);
+
+    printf("Enter strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%49s", a[i]);
+    }
+
+    for (i = 0; i < n - 1; i++)
+    {
+        for (j = 0; j < n - i - 1; j++)
+        {
+            if (strcmp(a[j], a[j + 1]) > 0)
+            {
+                strcpy(temp, a[j]);
+                strcpy(a[j], a[j + 1]);
+                strcpy(a[j + 1], temp);
+            }
+        }
+    }
+
+    printf("Sorted strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%s ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+banana apple mango orange grapes</pre>
+
+<b>Output:</b>
+<pre>Sorted strings:
+apple banana grapes mango orange</pre>
+
+<h2>Program 14: Bubble Sort Through Recursion on String Array</h2>
+
+<xmp>#include <stdio.h>
+#include <string.h>
+
+void bubbleSort(char a[][50], int n)
+{
+    int i;
+    char temp[50];
+
+    if (n == 1)
+    {
+        return;
+    }
+
+    for (i = 0; i < n - 1; i++)
+    {
+        if (strcmp(a[i], a[i + 1]) > 0)
+        {
+            strcpy(temp, a[i]);
+            strcpy(a[i], a[i + 1]);
+            strcpy(a[i + 1], temp);
+        }
+    }
+
+    bubbleSort(a, n - 1);
+}
+
+int main()
+{
+    char a[50][50];
+    int n, i;
+
+    printf("Enter number of strings: ");
+    scanf("%d", &n);
+
+    printf("Enter strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%49s", a[i]);
+    }
+
+    bubbleSort(a, n);
+
+    printf("Sorted strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%s ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+banana apple mango orange grapes</pre>
+
+<b>Output:</b>
+<pre>Sorted strings:
+apple banana grapes mango orange</pre>
+
+<h2>Program 15: Insertion Sort Through Iteration on String Array</h2>
+
+<xmp>#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char a[50][50], key[50];
+    int n, i, j;
+
+    printf("Enter number of strings: ");
+    scanf("%d", &n);
+
+    printf("Enter strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%49s", a[i]);
+    }
+
+    for (i = 1; i < n; i++)
+    {
+        strcpy(key, a[i]);
+        j = i - 1;
+
+        while (j >= 0 && strcmp(a[j], key) > 0)
+        {
+            strcpy(a[j + 1], a[j]);
+            j--;
+        }
+
+        strcpy(a[j + 1], key);
+    }
+
+    printf("Sorted strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%s ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+banana apple mango orange grapes</pre>
+
+<b>Output:</b>
+<pre>Sorted strings:
+apple banana grapes mango orange</pre>
+
+<h2>Program 16: Insertion Sort Through Recursion on String Array</h2>
+
+<xmp>#include <stdio.h>
+#include <string.h>
+
+void insertionSort(char a[][50], int n)
+{
+    char key[50];
+    int j;
+
+    if (n <= 1)
+    {
+        return;
+    }
+
+    insertionSort(a, n - 1);
+
+    strcpy(key, a[n - 1]);
+    j = n - 2;
+
+    while (j >= 0 && strcmp(a[j], key) > 0)
+    {
+        strcpy(a[j + 1], a[j]);
+        j--;
+    }
+
+    strcpy(a[j + 1], key);
+}
+
+int main()
+{
+    char a[50][50];
+    int n, i;
+
+    printf("Enter number of strings: ");
+    scanf("%d", &n);
+
+    printf("Enter strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%49s", a[i]);
+    }
+
+    insertionSort(a, n);
+
+    printf("Sorted strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%s ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+banana apple mango orange grapes</pre>
+
+<b>Output:</b>
+<pre>Sorted strings:
+apple banana grapes mango orange</pre>
+
+<h2>Program 17: Merge Sort Through Iteration on String Array</h2>
+
+<xmp>#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char a[50][50], temp[50][50];
+    int n, width, left, mid, right;
+    int i, x, y, k, start;
+
+    printf("Enter number of strings: ");
+    scanf("%d", &n);
+
+    printf("Enter strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%49s", a[i]);
+    }
+
+    for (width = 1; width < n; width *= 2)
+    {
+        for (left = 0; left < n; left += 2 * width)
+        {
+            mid = left + width;
+            right = left + 2 * width;
+
+            if (mid > n)
+            {
+                mid = n;
+            }
+
+            if (right > n)
+            {
+                right = n;
+            }
+
+            x = left;
+            y = mid;
+            k = left;
+
+            while (x < mid && y < right)
+            {
+                if (strcmp(a[x], a[y]) <= 0)
+                {
+                    strcpy(temp[k++], a[x++]);
+                }
+                else
+                {
+                    strcpy(temp[k++], a[y++]);
+                }
+            }
+
+            while (x < mid)
+            {
+                strcpy(temp[k++], a[x++]);
+            }
+
+            while (y < right)
+            {
+                strcpy(temp[k++], a[y++]);
+            }
+
+            for (start = left; start < right; start++)
+            {
+                strcpy(a[start], temp[start]);
+            }
+        }
+    }
+
+    printf("Sorted strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%s ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+banana apple mango orange grapes</pre>
+
+<b>Output:</b>
+<pre>Sorted strings:
+apple banana grapes mango orange</pre>
+
+<h2>Program 18: Merge Sort Through Recursion on String Array</h2>
+
+<xmp>#include <stdio.h>
+#include <string.h>
+
+void merge(char a[][50], int low, int mid, int high)
+{
+    char temp[50][50];
+    int i = low, j = mid + 1, k = 0;
+
+    while (i <= mid && j <= high)
+    {
+        if (strcmp(a[i], a[j]) <= 0)
+        {
+            strcpy(temp[k++], a[i++]);
+        }
+        else
+        {
+            strcpy(temp[k++], a[j++]);
+        }
+    }
+
+    while (i <= mid)
+    {
+        strcpy(temp[k++], a[i++]);
+    }
+
+    while (j <= high)
+    {
+        strcpy(temp[k++], a[j++]);
+    }
+
+    for (i = low, k = 0; i <= high; i++, k++)
+    {
+        strcpy(a[i], temp[k]);
+    }
+}
+
+void mergeSort(char a[][50], int low, int high)
+{
+    int mid;
+
+    if (low < high)
+    {
+        mid = (low + high) / 2;
+
+        mergeSort(a, low, mid);
+        mergeSort(a, mid + 1, high);
+
+        merge(a, low, mid, high);
+    }
+}
+
+int main()
+{
+    char a[50][50];
+    int n, i;
+
+    printf("Enter number of strings: ");
+    scanf("%d", &n);
+
+    printf("Enter strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%49s", a[i]);
+    }
+
+    mergeSort(a, 0, n - 1);
+
+    printf("Sorted strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%s ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+banana apple mango orange grapes</pre>
+
+<b>Output:</b>
+<pre>Sorted strings:
+apple banana grapes mango orange</pre>
+
+<h2>Program 19: Quick Sort Through Iteration on String Array</h2>
+
+<xmp>#include <stdio.h>
+#include <string.h>
+
+void quickSort(char a[][50], int n)
+{
+    int low[100], high[100];
+    int top = -1;
+    int l, h, i, j;
+    char pivot[50], temp[50];
+
+    low[++top] = 0;
+    high[top] = n - 1;
+
+    while (top >= 0)
+    {
+        l = low[top];
+        h = high[top--];
+
+        strcpy(pivot, a[h]);
+        i = l - 1;
+
+        for (j = l; j < h; j++)
+        {
+            if (strcmp(a[j], pivot) < 0)
+            {
+                i++;
+
+                strcpy(temp, a[i]);
+                strcpy(a[i], a[j]);
+                strcpy(a[j], temp);
+            }
+        }
+
+        strcpy(temp, a[i + 1]);
+        strcpy(a[i + 1], a[h]);
+        strcpy(a[h], temp);
+
+        j = i + 1;
+
+        if (j - 1 > l)
+        {
+            low[++top] = l;
+            high[top] = j - 1;
+        }
+
+        if (j + 1 < h)
+        {
+            low[++top] = j + 1;
+            high[top] = h;
+        }
+    }
+}
+
+int main()
+{
+    char a[50][50];
+    int n, i;
+
+    printf("Enter number of strings: ");
+    scanf("%d", &n);
+
+    printf("Enter strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%49s", a[i]);
+    }
+
+    quickSort(a, n);
+
+    printf("Sorted strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%s ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+banana apple mango orange grapes</pre>
+
+<b>Output:</b>
+<pre>Sorted strings:
+apple banana grapes mango orange</pre>
+
+<h2>Program 20: Quick Sort Through Recursion on String Array</h2>
+
+<xmp>#include <stdio.h>
+#include <string.h>
+
+int partition(char a[][50], int low, int high)
+{
+    char pivot[50], temp[50];
+    int i = low - 1;
+    int j;
+
+    strcpy(pivot, a[high]);
+
+    for (j = low; j < high; j++)
+    {
+        if (strcmp(a[j], pivot) < 0)
+        {
+            i++;
+
+            strcpy(temp, a[i]);
+            strcpy(a[i], a[j]);
+            strcpy(a[j], temp);
+        }
+    }
+
+    strcpy(temp, a[i + 1]);
+    strcpy(a[i + 1], a[high]);
+    strcpy(a[high], temp);
+
+    return i + 1;
+}
+
+void quickSort(char a[][50], int low, int high)
+{
+    int pi;
+
+    if (low < high)
+    {
+        pi = partition(a, low, high);
+
+        quickSort(a, low, pi - 1);
+        quickSort(a, pi + 1, high);
+    }
+}
+
+int main()
+{
+    char a[50][50];
+    int n, i;
+
+    printf("Enter number of strings: ");
+    scanf("%d", &n);
+
+    printf("Enter strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%49s", a[i]);
+    }
+
+    quickSort(a, 0, n - 1);
+
+    printf("Sorted strings:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("%s ", a[i]);
+    }
+
+    return 0;
+}</xmp>
+
+<b>Input:</b>
+<pre>5
+banana apple mango orange grapes</pre>
+
+<b>Output:</b>
+<pre>Sorted strings:
+apple banana grapes mango orange</pre>
+
+<a href="index.html">Back to Home</a>
+
+</body>
+</html>

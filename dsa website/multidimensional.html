@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multi Dimensional Array Programs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            background-color: #dfe6e9;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        h2 {
+            color: #0984e3;
+            border-left: 5px solid #0984e3;
+            padding-left: 10px;
+        }
+        pre, xmp {
+            background-color: #2d3436;
+            color: #dfe6e9;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            white-space: pre;
+        }
+        a {
+            display: block;
+            width: 150px;
+            text-align: center;
+            margin: 20px auto;
+            padding: 10px;
+            text-decoration: none;
+            background-color: #0984e3;
+            color: white;
+            border-radius: 6px;
+        }
+        a:hover {
+            background-color: #0652DD;
+        }
+    </style>
+</head>
+<body>
+<h1>MULTI DIMENSIONAL ARRAY PROGRAMS</h1>
+<a href="index.html">Back to Home</a>
+
+<h2>Program 1: Enter a Matrix of 4 Rows and 2 Columns from User and Display It</h2>
+<xmp>
+#include <stdio.h>
+int main()
+{
+    int a[4][2];
+    int i,j;
+    printf("Enter 8 elements of matrix:\n");
+    for(i=0;i<4;i++)
+    {
+        for(j=0;j<2;j++)
+        {
+            scanf("%d",&a[i][j]);
+        }
+    }
+    printf("Matrix is:\n");
+    for(i=0;i<4;i++)
+    {
+        for(j=0;j<2;j++)
+        {
+            printf("%d\t",a[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+</xmp>
+<b>INPUT:</b>
+<pre>
+Enter 8 elements of matrix:
+1 2
+3 4
+5 6
+7 8
+</pre>
+<b>OUTPUT:</b>
+<pre>
+Matrix is:
+1    2
+3    4
+5    6
+7    8
+</pre>
+
+<h2>Program 2: Enter Two Matrices from User, Add the Matrices and Display the Answer</h2>
+<xmp>
+#include <stdio.h>
+int main()
+{
+    int a[10][10],b[10][10],c[10][10];
+    int r,col,i,j;
+    printf("Enter rows and columns: ");
+    scanf("%d %d",&r,&col);
+    printf("Enter first matrix:\n");
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            scanf("%d",&a[i][j]);
+        }
+    }
+    printf("Enter second matrix:\n");
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            scanf("%d",&b[i][j]);
+        }
+    }
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            c[i][j]=a[i][j]+b[i][j];
+        }
+    }
+    printf("Addition of matrices:\n");
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            printf("%d\t",c[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+</xmp>
+<b>INPUT:</b>
+<pre>
+Enter rows and columns: 2 2
+
+Enter first matrix:
+1 2
+3 4
+
+Enter second matrix:
+5 6
+7 8
+</pre>
+<b>OUTPUT:</b>
+<pre>
+Addition of matrices:
+6    8
+10   12
+</pre>
+
+<h2>Program 3: Enter Two Matrices from User, Subtract the Matrices and Display the Answer</h2>
+<xmp>
+#include <stdio.h>
+int main()
+{
+    int a[10][10],b[10][10],c[10][10];
+    int r,col,i,j;
+    printf("Enter rows and columns: ");
+    scanf("%d %d",&r,&col);
+    printf("Enter first matrix:\n");
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            scanf("%d",&a[i][j]);
+        }
+    }
+    printf("Enter second matrix:\n");
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            scanf("%d",&b[i][j]);
+        }
+    }
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            c[i][j]=a[i][j]-b[i][j];
+        }
+    }
+    printf("Subtraction of matrices:\n");
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            printf("%d\t",c[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+</xmp>
+<b>INPUT:</b>
+<pre>
+Enter rows and columns: 2 2
+
+Enter first matrix:
+8 6
+9 7
+
+Enter second matrix:
+3 2
+4 1
+</pre>
+<b>OUTPUT:</b>
+<pre>
+Subtraction of matrices:
+5    4
+5    6
+</pre>
+
+<h2>Program 4: Enter Two Matrices from User, Multiply the Matrices and Display the Answer</h2>
+<xmp>
+#include <stdio.h>
+int main()
+{
+    int a[10][10],b[10][10],c[10][10];
+    int r1,c1,r2,c2;
+    int i,j,k;
+    printf("Enter rows and columns of first matrix: ");
+    scanf("%d %d",&r1,&c1);
+    printf("Enter rows and columns of second matrix: ");
+    scanf("%d %d",&r2,&c2);
+    if(c1!=r2)
+    {
+        printf("Matrix multiplication not possible.");
+        return 0;
+    }
+    printf("Enter first matrix:\n");
+    for(i=0;i<r1;i++)
+    {
+        for(j=0;j<c1;j++)
+        {
+            scanf("%d",&a[i][j]);
+        }
+    }
+    printf("Enter second matrix:\n");
+    for(i=0;i<r2;i++)
+    {
+        for(j=0;j<c2;j++)
+        {
+            scanf("%d",&b[i][j]);
+        }
+    }
+    for(i=0;i<r1;i++)
+    {
+        for(j=0;j<c2;j++)
+        {
+            c[i][j]=0;
+            for(k=0;k<c1;k++)
+            {
+                c[i][j]=c[i][j]+a[i][k]*b[k][j];
+            }
+        }
+    }
+    printf("Multiplication of matrices:\n");
+    for(i=0;i<r1;i++)
+    {
+        for(j=0;j<c2;j++)
+        {
+            printf("%d\t",c[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+</xmp>
+<b>INPUT:</b>
+<pre>
+Enter rows and columns of first matrix: 2 2
+Enter rows and columns of second matrix: 2 2
+
+Enter first matrix:
+1 2
+3 4
+
+Enter second matrix:
+5 6
+7 8
+</pre>
+<b>OUTPUT:</b>
+<pre>
+Multiplication of matrices:
+19   22
+43   50
+</pre>
+
+<h2>Program 5: Enter a Matrix from User and Copy It in Another Matrix of Same Size</h2>
+<xmp>
+#include <stdio.h>
+int main()
+{
+    int a[10][10],b[10][10];
+    int r,col,i,j;
+    printf("Enter rows and columns: ");
+    scanf("%d %d",&r,&col);
+    printf("Enter matrix elements:\n");
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            scanf("%d",&a[i][j]);
+        }
+    }
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            b[i][j]=a[i][j];
+        }
+    }
+    printf("Copied matrix:\n");
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            printf("%d\t",b[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+</xmp>
+<b>INPUT:</b>
+<pre>
+Enter rows and columns: 2 3
+
+Enter matrix elements:
+1 2 3
+4 5 6
+</pre>
+<b>OUTPUT:</b>
+<pre>
+Copied matrix:
+1    2    3
+4    5    6
+</pre>
+
+<h2>Program 6: Enter the Matrix from User, Multiply It with a Scalar Value and Display the Answer</h2>
+<xmp>
+#include <stdio.h>
+int main()
+{
+    int a[10][10];
+    int r,col,scalar;
+    int i,j;
+    printf("Enter rows and columns: ");
+    scanf("%d %d",&r,&col);
+    printf("Enter matrix elements:\n");
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            scanf("%d",&a[i][j]);
+        }
+    }
+    printf("Enter scalar value: ");
+    scanf("%d",&scalar);
+    printf("Resultant matrix:\n");
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<col;j++)
+        {
+            printf("%d\t",a[i][j]*scalar);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+</xmp>
+<b>INPUT:</b>
+<pre>
+Enter rows and columns: 2 2
+
+Enter matrix elements:
+1 2
+3 4
+
+Enter scalar value: 3
+</pre>
+<b>OUTPUT:</b>
+<pre>
+Resultant matrix:
+3    6
+9    12
+</pre>
+
+<h2>Program 7: Create a Tic Tac Toe Game Using 2D Arrays</h2>
+<xmp>
+#include <stdio.h>
+int main()
+{
+    char a[3][3];
+    int i,j;
+    int row,col;
+    int player=1;
+    int moves=0;
+    int win=0;
+    char mark;
+    for(i=0;i<3;i++)
+    {
+        for(j=0;j<3;j++)
+        {
+            a[i][j]=' ';
+        }
+    }
+    while(moves<9 && win==0)
+    {
+        printf("\n");
+        for(i=0;i<3;i++)
+        {
+            printf(" %c | %c | %c\n",a[i][0],a[i][1],a[i][2]);
+            if(i<2)
+            {
+                printf("---|---|---\n");
+            }
+        }
+        mark=(player==1)?'X':'O';
+        printf("\nPlayer %d (%c), enter row and column (1-3): ",player,mark);
+        scanf("%d %d",&row,&col);
+        row--;
+        col--;
+        if(row<0 || row>2 || col<0 || col>2 || a[row][col]!=' ')
+        {
+            printf("Invalid move! Try again.\n");
+            continue;
+        }
+        a[row][col]=mark;
+        moves++;
+        for(i=0;i<3;i++)
+        {
+            if(a[i][0]==mark && a[i][1]==mark && a[i][2]==mark)
+            {
+                win=1;
+            }
+            if(a[0][i]==mark && a[1][i]==mark && a[2][i]==mark)
+            {
+                win=1;
+            }
+        }
+        if(a[0][0]==mark && a[1][1]==mark && a[2][2]==mark)
+        {
+            win=1;
+        }
+        if(a[0][2]==mark && a[1][1]==mark && a[2][0]==mark)
+        {
+            win=1;
+        }
+        if(win==1)
+        {
+            printf("\nPlayer %d wins!\n",player);
+        }
+        else
+        {
+            player=(player==1)?2:1;
+        }
+    }
+    printf("\nFinal Board:\n");
+    for(i=0;i<3;i++)
+    {
+        printf(" %c | %c | %c\n",a[i][0],a[i][1],a[i][2]);
+        if(i<2)
+        {
+            printf("---|---|---\n");
+        }
+    }
+    if(win==0)
+    {
+        printf("\nGame Draw!\n");
+    }
+    return 0;
+}
+</xmp>
+<b>INPUT:</b>
+<pre>
+Player 1: 1 1
+Player 2: 1 2
+Player 1: 2 2
+Player 2: 1 3
+Player 1: 3 3
+</pre>
+<b>OUTPUT:</b>
+<pre>
+X | O | O
+---|---|---
+  | X |
+---|---|---
+  |   | X
+
+Player 1 wins!
+</pre>
+
+<a href="index.html">Back to Home</a>
+</body>
+</html>
